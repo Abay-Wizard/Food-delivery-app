@@ -3,16 +3,20 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import PlaceOrder from "./pages/PlaceOrder";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="p-4">
-      <Navbar/>
-      <Routes>
-        <Route path="/" element = {<Home/>} />
-        <Route path="/cart" element = {<Cart/>} />
-        <Route path="/order" element = {<PlaceOrder/>} />
-      </Routes>
+    <div className="flex flex-col">
+      <Navbar />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/order" element={<PlaceOrder />} />
+        </Routes>
+      </main>
+      <Footer />
     </div>
   );
 }

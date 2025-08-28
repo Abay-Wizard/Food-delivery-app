@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
 import Header from '../components/Header'
 import ExploreMenu from '../components/ExploreMenu'
+import FoodDisplay from '../components/FoodDisplay'
 
 const Home = () => {
-    const [isMenuOpen,setIsMenuOpen] = useState(false)
+    const [isMenuOpen,setIsMenuOpen] = useState(true)
+    const [category,setCategory] = useState('All')
     const MenuOpener = () =>{
         setIsMenuOpen(prev => !prev)
     }
   return (
     <div>
        <Header MenuOpener={MenuOpener}/>
-       {isMenuOpen && <ExploreMenu/>}
+       {isMenuOpen && <ExploreMenu category={category} setCategory={setCategory}/>}
+       <FoodDisplay category={category}/>
     </div>
   )
 }
