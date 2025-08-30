@@ -4,11 +4,15 @@ import FoodItemCard from "./FoodItemCard";
 
 const FoodDisplay = () => {
   const { foodItems } = useContext(StoreContext);
+
   return (
-    <section className="">
-        <h1 className="text-5xl text-gray-700 mb-5 mx-40">Best dishes near you :)</h1>
-      <div className="grid grid-cols-4 gap-4 mx-40 my-20">
-        {foodItems.map((item, index) =>  (
+    <section>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl text-green-600 mb-5 px-4 sm:px-10 md:mx-40">
+        Best dishes near you :)
+      </h1>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 sm:px-10 md:mx-40 my-10 md:my-20">
+        {foodItems.map((item, index) => (
           <FoodItemCard
             key={index}
             name={item.name}
