@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { StoreContext } from "../context/StoreContext";
@@ -6,18 +6,7 @@ import { StoreContext } from "../context/StoreContext";
 export const Navbar = () => {
   const [menu, setMenu] = useState("home");
   const [isOpen, setIsOpen] = useState(false); // controls mobile menu
-  const [total,setTotal] = useState(0)
-  const {foodItems,cartItems} = useContext(StoreContext)
-  
-  useEffect(()=>{
-   let totalItems=0
-   foodItems.forEach(item =>{
-   if(cartItems[item.id] > 0){
-      totalItems+=cartItems[item.id]
-   }
-  })
-  setTotal(totalItems)
-  },[foodItems,cartItems])
+  const {getTotalItems} = useContext(StoreContext)
   
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-md">
@@ -97,7 +86,7 @@ export const Navbar = () => {
               className="w-8 md:w-10 cursor-pointer hover:scale-110 transition-transform"
             />
             <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
-              {total}
+              {getTotalItems() > 0 ? getTotalItems():''}
             </span>
           </Link>
 

@@ -1,9 +1,10 @@
 import { useContext} from "react";
 import { StoreContext } from "../context/StoreContext";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cartItems, removeFromCart, foodItems } = useContext(StoreContext);
-  let total = 0;
+  const { cartItems, removeFromCart, foodItems,getTotalCart } = useContext(StoreContext);
+  const navigate = useNavigate()
   return (
     <div className="p-5 max-w-5xl mx-auto">
       {/* Header Row */}
@@ -17,7 +18,6 @@ const Cart = () => {
       {/* eslint-disable-next-line array-callback-return */}
       {foodItems.map((item, index) => {
         if (cartItems[item.id] > 0) {
-          total += cartItems[item.id] * item.price;
           return (
             <div
               key={index}
@@ -54,15 +54,15 @@ const Cart = () => {
 
       <div className="p-5 max-w-xl mx-auto bg-white rounded-2xl shadow-md space-y-6 mb-10">
         <h1 className="text-2xl font-bold text-gray-800 text-center">
-          Payment
+          Cart details
         </h1>
 
         {/* Total + Checkout */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 border-b pb-4">
           <p className="text-xl font-bold">
-            Total: <span className="text-green-600">${Math.round(total)}</span>
+            Total: <span className="text-green-600">${Math.round(getTotalCart())}</span>
           </p>
-          <button className="px-6 py-2 bg-green-600 text-white rounded-xl shadow hover:bg-green-700 transition">
+          <button onClick={()=>navigate('/order')} className="px-6 py-2 bg-green-600 text-white rounded-xl shadow hover:bg-green-700 transition">
             Proceed to Checkout
           </button>
         </div>

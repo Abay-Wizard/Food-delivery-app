@@ -1,9 +1,22 @@
 import express from 'express'
+import dotenv from 'dotenv'
+import cors from 'cors'
+import ConnectDB from './config/db.js'
+import foodRoute from './routes/foodRoute.js'
+
 const app = express()
+dotenv.config()
+
+app.use(cors())
+app.use(express.json())
+
+//route middleware
+app.use("/api/food",foodRoute)
+app.use("/images", express.static("uploads"))
 
 
-
-
-app.listen(5000,()=>{
+ConnectDB().then(()=>{
+    app.listen(5000,()=>{
     console.log('Server is running on port 5000 ...!')
+})
 })
