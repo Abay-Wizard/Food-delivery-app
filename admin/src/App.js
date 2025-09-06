@@ -1,6 +1,27 @@
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import FoodAdd from "./pages/FoodAdd";
+import FoodList from "./pages/FoodList";
+import FoodOrder from "./pages/FoodOrder";
+import Sidebar from "./components/Sidebar";
+import { Toaster } from "react-hot-toast";
+
 function App() {
   return (
-    <div className="text-purple-600 text-3xl p-5">Admin</div>
+    <div className=" flex flex-col h-screen">
+      <Navbar />
+      <div className="flex gap-2 flex-1 overflow-hidden">
+        <Sidebar  className="h-full overflow-y-auto" />
+        <main className='flex-1 overflow-y-auto p-4'>
+          <Routes>
+            <Route path="/add" element={<FoodAdd />} />
+            <Route path="/list" element={<FoodList />} />
+            <Route path="/order" element={<FoodOrder />} />
+          </Routes>
+        </main>
+      </div>
+      <Toaster/>
+    </div>
   );
 }
 
