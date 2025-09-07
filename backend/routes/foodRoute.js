@@ -1,17 +1,11 @@
 import express from 'express'
-import { CreateFoodItem,GetAllFoodItems,DeleteFoodItem } from '../controllers/foodController.js'
-import multer from 'multer'
-const storage = multer.diskStorage({
-    destination:"uploads",
-    filename:(req,file,cb)=>{
-        return cb(null,`${Date.now()} ${file.originalname}`)
-    }
-})
-const upload = multer({storage:storage})
+import { CreateFoodItem,GetAllFoodItems,DeleteFoodItem,UpdateFoodItem } from '../controllers/foodController.js'
+import upload from '../middleware/uploadMiddleware.js'
 
 const router = express.Router()
 router.post('/add',upload.single('image'),CreateFoodItem)
 router.get('/list',GetAllFoodItems)
 router.delete('/delete/:id',DeleteFoodItem)
+router.put('/update/:id',UpdateFoodItem)
 
 export default router

@@ -1,27 +1,59 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios'
+import toast from 'react-hot-toast'
+import { StoreContext } from "../context/StoreContext";
+
 
 const SignUp = () => {
+  const {url} = useContext(StoreContext)
+  const [name,setName] =useState('')
+  const [email,setEmail]= useState('')
+  const [password,setPassword]=useState('')
+  const data = {
+    name,email,password
+  }
+  const HandleCreate = async (e) =>{
+    e.preventDefault()
+   const res= await axios.post(`${url}/api/user/register`,data)
+    if(res.data.success){
+      toast.success(res.data.message)
+      setName('')
+      setEmail('')
+      setPassword('')
+    }else{
+      toast.error(res.data.message)
+    }
+    //console.log(res.data.message)
+   
+
+  }
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-sm">
         <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
           Sign up here
         </h1>
-        <form className="flex flex-col gap-4">
+        <form onSubmit={HandleCreate} className="flex flex-col gap-4">
           <input
+            onChange={(e)=>setName(e.target.value)}
+            value={name}
             type="text"
             placeholder="Your name"
             required
             className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
           <input
+            onChange={(e)=>setEmail(e.target.value)}
+            value={email}
             type="email"
             placeholder="Your email (ex: abay@gmail.com)"
             required
             className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
           <input
+            onChange={(e)=>setPassword(e.target.value)}
+            value={password}
             type="password"
             placeholder="Your password"
             required

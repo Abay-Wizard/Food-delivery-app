@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { toast } from "react-hot-toast";
 import url from "../assets/url";
 
 const FoodList = () => {
@@ -15,6 +17,21 @@ const FoodList = () => {
     };
     FetchFoodItems();
   }, []);
+  const HandleDelete = async (id) => {
+    try {
+      const res = await axios.delete(`${url}/api/food/delete/${id}`);
+      if (res.data) {
+        toast.success(res.data.message);
+        setFoods((prev) => prev.filter((food) => food._id !== id));
+      } else {
+        toast.error("Something went wrong!");
+      }
+    } catch (error) {
+      //console.log("Something went wrong!");
+      toast.error(error.response?.data?.message);
+    }
+  };
+
   return (
     <section className="p-4">
       <h1 className="text-2xl font-semibold mb-4">All Food Items</h1>
@@ -50,12 +67,15 @@ const FoodList = () => {
                 <td className="p-3 font-semibold text-gray-700">
                   ${food.price}
                 </td>
-                <td className="p-3 flex justify-center gap-2">
-                  <button className="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600">
-                    Update
+                <td className="p-3 flex justify-center items-center gap-2">
+                  <button
+                    onClick={() => HandleDelete(food._id)}
+                    className="p-2 bg-red-100 rounded hover:bg-red-200"
+                  >
+                    <AiFillDelete size={20} className="text-red-500" />
                   </button>
-                  <button className="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600">
-                    Delete
+                  <button className="p-2 bg-purple-100 rounded hover:bg-purple-200">
+                    <AiFillEdit size={20} className="text-purple-500" />
                   </button>
                 </td>
               </tr>

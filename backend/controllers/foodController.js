@@ -4,12 +4,13 @@ import fs from 'fs'
 
 const CreateFoodItem = async (req, res) => {
     const image_filename = `${req.file.filename}`
+    const {name,description,price,category} = req.body
   try {
     const newFood = new Food({
-        name:req.body.name,
-        description:req.body.description,
-        price:req.body.price,
-        category:req.body.category,
+        name,
+        description,
+        price,
+        category,
         image:image_filename
     });
     await newFood.save();
@@ -37,9 +38,20 @@ const DeleteFoodItem = async(req,res)=>{
         await Food.findByIdAndDelete(id)
         res.json({message:"food deleted"})
     } catch (error) {
-         console.log(error)
+         //console.log(error)
          res.json({message:'something went wrong', error})
     }
 }
 
-export {CreateFoodItem,GetAllFoodItems,DeleteFoodItem}
+const UpdateFoodItem = async(req,res)=>{
+  try {
+    const {id}= req.params
+    const food = await Food.findByIdAndUpdate(id)
+    res.json({message:'Food updated successfully!',data:food})
+    
+  } catch (error) {
+    res.json({message:'something went wrong!'})
+  }
+}
+
+export {CreateFoodItem,GetAllFoodItems,DeleteFoodItem,UpdateFoodItem}

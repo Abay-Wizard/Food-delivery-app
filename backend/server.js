@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import ConnectDB from './config/db.js'
 import foodRoute from './routes/foodRoute.js'
+import userRoute from './routes/userRoute.js'
 
 const app = express()
 dotenv.config()
@@ -12,6 +13,7 @@ app.use(express.json())
 
 //route middleware
 app.use("/api/food",foodRoute)
+app.use('/api/user',userRoute)
 app.use("/images", express.static("uploads"))
 
 

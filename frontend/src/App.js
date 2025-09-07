@@ -6,6 +6,7 @@ import PlaceOrder from "./pages/PlaceOrder";
 import Footer from "./components/Footer";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import {Toaster} from 'react-hot-toast'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <Toaster/>
     </div>
   );
 }

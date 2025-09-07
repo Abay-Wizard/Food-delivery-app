@@ -5,6 +5,7 @@ import FoodList from "./pages/FoodList";
 import FoodOrder from "./pages/FoodOrder";
 import Sidebar from "./components/Sidebar";
 import { Toaster } from "react-hot-toast";
+import FoodUpdate from "./pages/FoodUpdate";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/add" element={<FoodAdd />} />
             <Route path="/list" element={<FoodList />} />
             <Route path="/order" element={<FoodOrder />} />
+            <Route path="/update" element={<FoodUpdate/>} />
           </Routes>
         </main>
       </div>

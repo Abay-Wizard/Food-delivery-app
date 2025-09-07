@@ -2,13 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SignIn = () => {
+  const HandleLogin =async(e)=>{
+    e.preventDefault()
+  }
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-sm">
         <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
           Sign in here
         </h1>
-        <form className="flex flex-col gap-4">
+        <form onSubmit={HandleLogin} className="flex flex-col gap-4">
           <input
             type="email"
             placeholder="Your email (ex: abay@gmail.com)"
