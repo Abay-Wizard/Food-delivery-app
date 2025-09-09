@@ -6,13 +6,14 @@ import { StoreContext } from "../context/StoreContext";
 export const Navbar = () => {
   const [menu, setMenu] = useState("home");
   const [isOpen, setIsOpen] = useState(false); // controls mobile menu
-  const {getTotalItems} = useContext(StoreContext)
-  
+  const [isdropDownOpen,setIsDropDownOpen]=useState(false)
+  const { getTotalItems, token, setToken } = useContext(StoreContext);
+
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-md">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
         {/* Logo */}
-        <Link to='/'>
+        <Link to="/">
           <h1 className="text-red-600 text-3xl md:text-4xl font-bold">
             Tomato.
           </h1>
@@ -86,16 +87,45 @@ export const Navbar = () => {
               className="w-8 md:w-10 cursor-pointer hover:scale-110 transition-transform"
             />
             <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
-              {getTotalItems() > 0 ? getTotalItems():''}
+              {getTotalItems() > 0 ? getTotalItems() : ""}
             </span>
           </Link>
 
           {/* Sign in */}
-          <Link to="/signin" className="hidden sm:block">
-            <button className="mt-2 rounded-lg py-1.5 px-4 bg-red-600 text-white font-medium hover:bg-red-700 transition-colors">
-              Sign In
-            </button>
-          </Link>
+          {!token ? (
+            <Link to="/signin" className="hidden sm:block">
+              <button className="mt-2 rounded-lg py-1.5 px-4 bg-red-600 text-white font-medium hover:bg-red-700 transition-colors">
+                Sign In
+              </button>
+            </Link>
+          ) : 
+            <div onClick={()=>setIsDropDownOpen(prev =>!prev)} className="relative group inline-block">
+              {/* Profile Image */}
+              <img
+                src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740&q=80"
+                className="size-16 rounded-full cursor-pointer"
+              />
+
+              {/* Dropdown Menu */}
+              <ul className={!isdropDownOpen? `absolute hidden group-hover:flex flex-col bg-white shadow-lg rounded-2xl p-2 mt-2 right-0 w-40`: `absolute group-hover:flex flex-col bg-white shadow-lg rounded-2xl p-2 mt-2 right-0 w-40`}>
+                <li className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-lg cursor-pointer">
+                  <img
+                    src="https://images.vexels.com/media/users/3/200093/isolated/preview/596f0d8cb733b17268752d044976f102-shopping-bag-icon.png"
+                    className="size-6"
+                  />
+                  <p className="text-sm">Orders</p>
+                </li>
+                <hr className="my-1 border-gray-200" />
+                <li onClick={()=>setToken('')} className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-lg cursor-pointer">
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/4421/4421772.png"
+                    className="size-6"
+                  />
+                  <p className="text-sm">Logout</p>
+                </li>
+              </ul>
+            </div>
+          }
 
           {/* Mobile Hamburger */}
           <div onClick={() => setIsOpen((prev) => !prev)} className="md:hidden">
