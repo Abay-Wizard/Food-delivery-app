@@ -3,7 +3,11 @@ import { StoreContext } from "../context/StoreContext";
 import FoodItemCard from "./FoodItemCard";
 
 const FoodDisplay = () => {
-  const { foodItems } = useContext(StoreContext);
+  const { foodItems,url } = useContext(StoreContext);
+  //console.log("Food items in display:", foodItems);
+  if(foodItems.length===0){
+    return <p className='text-3xl text-green-600 text-center'>Loading ...</p>
+  }
 
   return (
     <section>
@@ -18,8 +22,8 @@ const FoodDisplay = () => {
             name={item.name}
             price={item.price}
             description={item.description}
-            image={item.image}
-            id={item.id}
+            image={`${url}/images/${item.image}`}
+            id={item._id}
           />
         ))}
       </div>

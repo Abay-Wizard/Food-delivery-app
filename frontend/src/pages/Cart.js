@@ -3,7 +3,7 @@ import { StoreContext } from "../context/StoreContext";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cartItems, removeFromCart, foodItems,getTotalCart } = useContext(StoreContext);
+  const { cartItems, removeFromCart, foodItems,getTotalCart,url } = useContext(StoreContext);
   const navigate = useNavigate()
   return (
     <div className="p-5 max-w-5xl mx-auto">
@@ -17,7 +17,7 @@ const Cart = () => {
 
       {/* eslint-disable-next-line array-callback-return */}
       {foodItems.map((item, index) => {
-        if (cartItems[item.id] > 0) {
+        if (cartItems[item._id] > 0) {
           return (
             <div
               key={index}
@@ -25,7 +25,7 @@ const Cart = () => {
             >
               <div className="flex items-center gap-4">
                 <img
-                  src={item.image}
+                  src={`${url}/images/${item.image}`}
                   className="w-24 h-24 rounded-xl object-cover"
                   alt=""
                 />
@@ -34,14 +34,14 @@ const Cart = () => {
 
               <p className="text-gray-700">${item.price}</p>
 
-              <p className="text-gray-700">x {cartItems[item.id]}</p>
+              <p className="text-gray-700">x {cartItems[item._id]}</p>
 
               <div className="flex justify-between items-center w-full md:w-auto">
                 <p className="font-semibold">
-                  ${item.price * cartItems[item.id]}
+                  ${item.price * cartItems[item._id]}
                 </p>
                 <p
-                  onClick={() => removeFromCart(item.id)}
+                  onClick={() => removeFromCart(item._id)}
                   className="ml-4 text-red-500 cursor-pointer font-bold hover:scale-110 transition"
                 >
                   ✕

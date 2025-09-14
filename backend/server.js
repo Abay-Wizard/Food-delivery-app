@@ -4,6 +4,7 @@ import cors from 'cors'
 import ConnectDB from './config/db.js'
 import foodRoute from './routes/foodRoute.js'
 import userRoute from './routes/userRoute.js'
+import cartRoute from './routes/cartRoute.js'
 
 const app = express()
 dotenv.config()
@@ -15,6 +16,7 @@ app.use(express.json())
 app.use("/api/food",foodRoute)
 app.use('/api/user',userRoute)
 app.use("/images", express.static("uploads"))
+app.use('/api/cart',cartRoute)
 
 
 ConnectDB().then(()=>{

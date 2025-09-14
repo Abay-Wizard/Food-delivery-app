@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { StoreContext } from "../context/StoreContext";
 
@@ -8,6 +8,12 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); // controls mobile menu
   const [isdropDownOpen,setIsDropDownOpen]=useState(false)
   const { getTotalItems, token, setToken } = useContext(StoreContext);
+  const logout = ()=>{
+    localStorage.removeItem('token')
+    setToken('')
+    navigate('/')
+  }
+  const navigate=useNavigate()
 
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-md">
@@ -116,7 +122,7 @@ export const Navbar = () => {
                   <p className="text-sm">Orders</p>
                 </li>
                 <hr className="my-1 border-gray-200" />
-                <li onClick={()=>setToken('')} className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-lg cursor-pointer">
+                <li onClick={logout} className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-lg cursor-pointer">
                   <img
                     src="https://cdn-icons-png.flaticon.com/512/4421/4421772.png"
                     className="size-6"

@@ -3,6 +3,7 @@ import { StoreContext } from "../context/StoreContext";
 
 const FoodItemCard = ({ id, name, price, description, image }) => {
   const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
+  //console.log(id)
 
   return (
     <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 
