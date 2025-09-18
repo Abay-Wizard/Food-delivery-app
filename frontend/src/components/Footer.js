@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Brand Section */}
         <div className="flex flex-col gap-4">
-          <h1 className="text-5xl font-bold text-red-500">Tomato.</h1>
+          <h1 className="text-5xl font-bold text-red-500">Global Bites</h1>
           <p className="leading-relaxed text-gray-400">
             Some dummy text, it is some dummy text you know. Yeah it is so cool
             seeing you perform this way. I really like it.

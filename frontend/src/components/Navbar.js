@@ -21,7 +21,7 @@ export const Navbar = () => {
         {/* Logo */}
         <Link to="/">
           <h1 className="text-red-600 text-3xl md:text-4xl font-bold">
-            Tomato.
+            Global Bites.
           </h1>
         </Link>
 
@@ -110,6 +110,7 @@ export const Navbar = () => {
               <img
                 src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740&q=80"
                 className="size-16 rounded-full cursor-pointer"
+                alt=''
               />
 
               {/* Dropdown Menu */}
@@ -118,6 +119,7 @@ export const Navbar = () => {
                   <img
                     src="https://images.vexels.com/media/users/3/200093/isolated/preview/596f0d8cb733b17268752d044976f102-shopping-bag-icon.png"
                     className="size-6"
+                    alt=''
                   />
                   <p className="text-sm">Orders</p>
                 </li>
@@ -126,6 +128,7 @@ export const Navbar = () => {
                   <img
                     src="https://cdn-icons-png.flaticon.com/512/4421/4421772.png"
                     className="size-6"
+                    alt=''
                   />
                   <p className="text-sm">Logout</p>
                 </li>
