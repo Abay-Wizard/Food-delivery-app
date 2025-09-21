@@ -115,7 +115,7 @@ export const Navbar = () => {
 
               {/* Dropdown Menu */}
               <ul className={!isdropDownOpen? `absolute hidden group-hover:flex flex-col bg-white shadow-lg rounded-2xl p-2 mt-2 right-0 w-40`: `absolute group-hover:flex flex-col bg-white shadow-lg rounded-2xl p-2 mt-2 right-0 w-40`}>
-                <li className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-lg cursor-pointer">
+                <li onClick={()=>navigate('/myorders')} className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-lg cursor-pointer">
                   <img
                     src="https://images.vexels.com/media/users/3/200093/isolated/preview/596f0d8cb733b17268752d044976f102-shopping-bag-icon.png"
                     className="size-6"
