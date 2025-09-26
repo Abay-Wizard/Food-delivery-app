@@ -7,7 +7,7 @@ dotenv.config();
 const stripe = new Stripe(process.env.stripe_secret_key)
 //console.log(process.env.stripe_secret_key)
 const placeOrder=async(req,res)=>{
-   const frontend_url = 'http://localhost:3000'
+   const frontend_url = 'https://fooddeliveryapp-two.vercel.app'
    const {address,amount,items} =req.body
    try {
     const order = new Order({
