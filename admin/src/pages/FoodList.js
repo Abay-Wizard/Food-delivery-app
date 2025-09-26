@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { AiFillDelete } from "react-icons/ai";
 import { toast } from "react-hot-toast";
 import url from "../assets/url";
 
@@ -24,7 +24,7 @@ const FoodList = () => {
         toast.success(res.data.message);
         setFoods((prev) => prev.filter((food) => food._id !== id));
       } else {
-        toast.error("Something went wrong!");
+        toast.error(res.data.message);
       }
     } catch (error) {
       //console.log("Something went wrong!");
@@ -73,9 +73,6 @@ const FoodList = () => {
                     className="p-2 bg-red-100 rounded hover:bg-red-200"
                   >
                     <AiFillDelete size={20} className="text-red-500" />
-                  </button>
-                  <button className="p-2 bg-purple-100 rounded hover:bg-purple-200">
-                    <AiFillEdit size={20} className="text-purple-500" />
                   </button>
                 </td>
               </tr>

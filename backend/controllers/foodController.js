@@ -1,5 +1,6 @@
 import Food from "../models/foodModel.js";
 import fs from 'fs'
+import path from 'path'
 // create new food item
 
 const CreateFoodItem = async (req, res) => {
@@ -23,7 +24,7 @@ const CreateFoodItem = async (req, res) => {
 // get all food items from database
 const GetAllFoodItems = async (_, res) => {
   try {
-    const foodItems = await Food.find();
+    const foodItems = await Food.find({});
     res.json({ message: "Food items fetched successfully!", data: foodItems });
   } catch (error) {
     res.json({ message: error });
@@ -34,7 +35,12 @@ const DeleteFoodItem = async(req,res)=>{
     const {id} = req.params
     try {
         const food = await Food.findById(id)
-        fs.unlink(`uploads/${food.image}`,()=>{})
+        const imagePath=path.join('uploads',food.image)
+        fs.unlink(imagePath,(err)=>{
+          if(err){
+            console.log('Failed to delete the file.')
+          }
+        })
         await Food.findByIdAndDelete(id)
         res.json({message:"food deleted"})
     } catch (error) {
@@ -43,15 +49,15 @@ const DeleteFoodItem = async(req,res)=>{
     }
 }
 
-const UpdateFoodItem = async(req,res)=>{
+const getSingleFoodItem=async(req,res)=>{
+  const {id}=req.params
   try {
-    const {id}= req.params
-    const food = await Food.findByIdAndUpdate(id)
-    res.json({message:'Food updated successfully!',data:food})
-    
+    const food=await Food.findById(id)
+    res.json({success:true,message:"food fetched successfully!",data:food})
   } catch (error) {
-    res.json({message:'something went wrong!'})
+    console.log(error)
   }
 }
 
-export {CreateFoodItem,GetAllFoodItems,DeleteFoodItem,UpdateFoodItem}
+
+export {CreateFoodItem,GetAllFoodItems,DeleteFoodItem,getSingleFoodItem}

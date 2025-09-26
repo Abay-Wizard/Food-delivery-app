@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp";
 import {Toaster} from 'react-hot-toast'
 import Verify from "./pages/Verify";
 import MyOrder from "./pages/MyOrder";
+import Detail from "./pages/Detail";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/signup" element={<SignUp/>} />
           <Route path="/verify" element={<Verify/>} />
           <Route path="/myorders" element={<MyOrder/>} />
+          <Route path="/detail/:id" element={<Detail/>} />
         </Routes>
       </main>
       <Footer />

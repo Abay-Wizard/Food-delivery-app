@@ -13,7 +13,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-//route middleware
+//route middlewares
 app.use("/api/food",foodRoute)
 app.use('/api/user',userRoute)
 app.use("/images", express.static("uploads"))

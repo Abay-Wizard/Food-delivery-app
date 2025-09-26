@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { StoreContext } from "../context/StoreContext";
+import {Link} from 'react-router-dom'
 
 const FoodItemCard = ({ id, name, price, description, image }) => {
   const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);

@@ -26,7 +26,7 @@ const FoodAdd = () => {
    const res = await axios.post("http://localhost:5000/api/food/add", formData);
 
     toast.success(res.data.message);
-    setImage(false);
+    setImage(null);
     setName('');
     setPrice('');
     setDescription('');
@@ -64,7 +64,7 @@ const FoodAdd = () => {
             onChange={(e)=>setName(e.target.value)}
             value={name}
             type="text"
-            placeholder="Type here"
+            placeholder="Type name here"
             className="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
           />
         </div>

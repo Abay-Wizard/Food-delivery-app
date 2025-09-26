@@ -18,7 +18,7 @@ const placeOrder=async(req,res)=>{
     })
     await order.save()
     await User.findByIdAndUpdate(req.userId,{cartData:{}})
-    const line_items=req.body.items.map((item)=>({
+    const line_items=items.map((item)=>({
         price_data:{
             currency:'usd',
             product_data:{
