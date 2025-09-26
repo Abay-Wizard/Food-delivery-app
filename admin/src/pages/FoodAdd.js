@@ -2,6 +2,7 @@ import {useState } from "react";
 import axios from 'axios'
 import {toast} from 'react-hot-toast'
 import { asset } from "../assets/asset";
+import url from "../assets/url";
 
 const FoodAdd = () => {
   const [image, setImage] = useState(null)
@@ -23,7 +24,7 @@ const FoodAdd = () => {
     formData.append("category", category);
 
     // send to backend
-   const res = await axios.post("http://localhost:5000/api/food/add", formData);
+   const res = await axios.post(`${url}/api/food/add`, formData);
 
     toast.success(res.data.message);
     setImage(null);
