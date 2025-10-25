@@ -8,7 +8,7 @@ const Header = ({ MenuOpener }) => {
                  relative rounded-xl bg-cover bg-center'
     >
       <div className='absolute top-6 sm:top-10 left-4 sm:left-6 md:left-8 flex flex-col gap-3 sm:gap-4 md:gap-5 animate-fadeIn delay-200'>
-  <h1 className='text-green-500 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold'>
+  <h1 className='text-purple-600 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold'>
     Order your favourite food here
   </h1>
   <p className='text-white text-sm sm:text-base md:text-lg lg:text-2xl font-semibold max-w-2xl'>
